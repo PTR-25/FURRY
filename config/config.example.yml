@@ -1,0 +1,38 @@
+# Exchange API Configuration
+exchanges:
+  binance:
+    api_key: "your_binance_api_key"
+    api_secret: "your_binance_api_secret"
+    testnet: false  # Set to true for testing
+  
+  hyperliquid:
+    api_key: "your_hyperliquid_api_key"
+    api_secret: "your_hyperliquid_api_secret"
+    testnet: false
+
+# Trading Parameters
+trading:
+  min_funding_rate_diff: 0.10  # 10% annualized
+  position_size: 1000  # Base position size in USD
+  max_leverage: 5
+  stop_loss_percentage: 0.02  # 2%
+  take_profit_percentage: 0.05  # 5%
+
+# Trading Pairs
+pairs:
+  - BTC-USDT
+  - ETH-USDT
+  - SOL-USDT
+
+# Data Collection
+data:
+  historical_days: 30  # Number of days of historical data to fetch
+  update_interval: 300  # Update interval in seconds
+  storage_path: "data/historical"
+
+# Logging
+logging:
+  level: INFO
+  file: "logs/trading.log"
+  max_file_size: 10485760  # 10MB
+  backup_count: 5 
