@@ -13,19 +13,61 @@ A Python-based system for analyzing and executing funding rate arbitrage opportu
 ## Project Structure
 
 ```
-├── src/
-│   ├── exchanges/      # Exchange-specific implementations
-│   ├── data/          # Data collection and storage
-│   ├── strategy/      # Trading strategy implementation
-│   ├── backtesting/   # Backtesting engine
-│   ├── analysis/      # Data analysis and visualization
-│   └── utils/         # Helper functions and utilities
-├── tests/             # Unit and integration tests
-├── config/            # Configuration files
-├── logs/              # Application logs
-├── data/              # Historical and cached data
-├── requirements.txt   # Python dependencies
-└── README.md         # Project documentation
+├── src/                          # Source code directory
+│   ├── exchanges/               # Exchange connectors and interfaces
+│   │   ├── base.py             # Base exchange connector interface
+│   │   ├── binance.py          # Binance exchange implementation
+│   │   └── hyperliquid.py      # Hyperliquid exchange implementation
+│   │
+│   ├── data/                   # Data handling and storage
+│   │   ├── collectors.py       # Data collection implementations
+│   │   ├── storage.py          # Data storage implementations
+│   │   └── validation.py       # Data validation utilities
+│   │
+│   ├── strategy/               # Trading strategy implementation
+│   │   ├── base.py            # Base strategy interface
+│   │   ├── funding_arb.py     # Funding rate arbitrage strategy
+│   │   └── risk.py            # Risk management implementation
+│   │
+│   ├── backtesting/           # Backtesting engine
+│   │   ├── engine.py          # Backtesting engine implementation
+│   │   └── metrics.py         # Performance metrics calculation
+│   │
+│   ├── analysis/              # Analysis and visualization tools
+│   │   ├── metrics.py         # Analysis metrics implementation
+│   │   └── visualization.py   # Plotting and visualization tools
+│   │
+│   └── utils/                 # Utility functions and helpers
+│       ├── config.py          # Configuration handling
+│       ├── logger.py          # Logging setup
+│       └── helpers.py         # General helper functions
+│
+├── docs/                       # Documentation directory
+│   ├── hyperliquid_api.md     # Hyperliquid API documentation
+│   └── binance_api.md         # Binance API documentation
+│
+├── tests/                      # Test directory
+│   ├── test_exchanges/        # Exchange connector tests
+│   ├── test_data/            # Data handling tests
+│   ├── test_strategy/        # Strategy tests
+│   └── test_backtesting/     # Backtesting engine tests
+│
+├── config/                     # Configuration files
+│   ├── config.example.yml     # Example configuration
+│   └── config.yml            # Active configuration (gitignored)
+│
+├── logs/                      # Log files directory
+│
+├── data/                      # Data storage directory
+│   └── historical/           # Historical data storage
+│
+├── notebooks/                 # Jupyter notebooks for analysis
+│
+├── requirements.txt           # Python dependencies
+├── README.md                 # Project documentation
+├── TODO.md                   # Project task list
+├── STRUCTURE.md              # Detailed structure documentation
+└── .gitignore               # Git ignore rules
 ```
 
 ## Installation
