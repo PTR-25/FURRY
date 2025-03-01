@@ -81,7 +81,7 @@ if __name__ == "__main__":
     symbol = "BTC"
     interval = "1h"
     days = 30
-    save_path = "data/historical"
+    save_path = "../../data/historical"
     
     binance_df, hyperliquid_df = fetch_historical_data(
         symbol=symbol,

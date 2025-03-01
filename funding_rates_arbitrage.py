@@ -94,6 +94,7 @@ def get_binance_funding_history(symbol, start_time=None, end_time=None, max_retr
             data = response.json()
             if not data:
                 retry_count += 1
+                print(f"Retrying... ({retry_count}/{max_retries})")
                 if retry_count > max_retries:
                     break
                 time.sleep(1)
@@ -105,6 +106,7 @@ def get_binance_funding_history(symbol, start_time=None, end_time=None, max_retr
             time.sleep(0.2)
         except Exception as e:
             time.sleep(2)
+            print(f"Error: {e}")
             continue
 
     all_records.sort(key=lambda x: x["fundingTime"])
