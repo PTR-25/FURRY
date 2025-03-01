@@ -29,8 +29,19 @@ def fetch_historical_data(
         Tuple of (binance_df, hyperliquid_df)
     """
     # Calculate time range
-    end_time = int(datetime.now().timestamp() * 1000)
-    start_time = end_time - (days * 24 * 60 * 60 * 1000)
+    # end_time = int(datetime.now().timestamp() * 1000)
+    #start_time = end_time - (days * 24 * 60 * 60 * 1000)
+    # Define your custom dates (format: YYYY-MM-DD)
+    start_date_str = "2023-09-01"
+    end_date_str = "2023-09-03"
+
+    # Convert string dates to datetime objects
+    start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
+    end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
+
+    # Convert datetime objects to timestamps in milliseconds
+    start_time = int(start_date.timestamp() * 1000)
+    end_time = int(end_date.timestamp() * 1000)
     
     # Initialize collectors
     binance_collector = get_collector('binance')
@@ -40,19 +51,20 @@ def fetch_historical_data(
     print(f"Fetching {days} days of {interval} data for {symbol}...")
     
     binance_symbol = f"{symbol}USDT"  # Binance uses USDT pairs
-    binance_df = binance_collector.get_historical_klines(
+    binance_df = binance_collector.get_historical_perpetual_klines(
         symbol=binance_symbol,
         interval=interval,
         start_time=start_time,
         end_time=end_time
     )
     
-    hyperliquid_df = hyperliquid_collector.get_historical_klines(
+    hyperliquid_df = hyperliquid_collector.get_historical_perpetual_klines(
         symbol=symbol,
         interval=interval,
         start_time=start_time,
         end_time=end_time
     )
+
     
     print(f"Fetched {len(binance_df)} records from Binance")
     print(f"Fetched {len(hyperliquid_df)} records from Hyperliquid")
@@ -65,12 +77,12 @@ def fetch_historical_data(
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
         if len(binance_df) > 0:
-            binance_file = save_dir / f"binance_{symbol}_{interval}_{timestamp}.csv"
+            binance_file = save_dir / f"binance_{symbol}_{interval}.csv"
             binance_df.to_csv(binance_file, index=False)
             print(f"Binance data saved to {binance_file}")
             
         if len(hyperliquid_df) > 0:
-            hyperliquid_file = save_dir / f"hyperliquid_{symbol}_{interval}_{timestamp}.csv"
+            hyperliquid_file = save_dir / f"hyperliquid_{symbol}_{interval}.csv"
             hyperliquid_df.to_csv(hyperliquid_file, index=False)
             print(f"Hyperliquid data saved to {hyperliquid_file}")
     

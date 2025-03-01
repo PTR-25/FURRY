@@ -4,12 +4,12 @@
 
 ### Exchange Integration
 - [ ] Implement Binance connector (src/exchanges/binance.py)
-  - [ ] Implement funding rate fetching
+  - [X] Implement funding rate fetching
   - [ ] Implement historical data fetching
   - [ ] Implement order placement
   - [ ] Add proper error handling
 - [ ] Implement Hyperliquid connector (src/exchanges/hyperliquid.py)
-  - [ ] Implement funding rate fetching
+  - [X] Implement funding rate fetching
   - [ ] Implement historical data fetching
   - [ ] Implement order placement
   - [ ] Add proper error handling
