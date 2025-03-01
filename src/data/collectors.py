@@ -13,7 +13,7 @@ from typing import Optional
 
 class BinanceDataCollector():
     """Data collector for Binance Futures."""
-    
+
     BASE_URL = "https://fapi.binance.com"
             
     def get_historical_perpetual_klines(
@@ -201,9 +201,9 @@ def get_collector(exchange: str):
         'binance': BinanceDataCollector,
         'hyperliquid': HyperliquidDataCollector
     }
-    
+
     collector_class = collectors.get(exchange.lower())
     if not collector_class:
         raise ValueError(f"Unsupported exchange: {exchange}")
-        
-    return collector_class() 
+
+    return collector_class()
